@@ -21,6 +21,10 @@ Apply the manifest file for anypoint service mesh.
 
 `istioctl manifest apply -f manifest-custom.yaml`
 
+Install anypoint service client.
+
+`curl -Ls http://anypoint.mulesoft.com/servicemesh/xapi/v1/install > asmctl && chmod +x asmctl`
+
 Rest of the instructions will be available when anypoint service mesh is implemented.
 
 Also have a look at the following readings for a better understanding of Anypoint service mesh and service meshes in general.
