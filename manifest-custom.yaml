@@ -1,0 +1,19 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  profile: default
+  components:
+    policy:
+      enabled: true
+    telemetry:
+      enabled: true
+    ingressGateways:
+      - enabled: false
+  meshConfig:
+    disablePolicyChecks: false
+  values:
+    telemetry:
+      v1:
+        enabled: true
+      v2:
+        enabled: false
