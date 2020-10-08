@@ -13,6 +13,10 @@ Download and install istio 1.6.8.
 
 `istioctl install --set profile=demo`
 
+Enable istio injection so that deployed pods can spin up with sidecar proxies.
+
+`kubectl label namespace default istio-injection=enabled`
+
 Apply the manifest file for anypoint service mesh.
 
 `istioctl manifest apply -f manifest-custom.yaml`
@@ -20,10 +24,6 @@ Apply the manifest file for anypoint service mesh.
 Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.
 
 `kubectl apply -f hello_world_api/deployment.yaml`
-
-Enable istio injection so that deployed pods can spin up with sidecar proxies.
-
-`kubectl label namespace default istio-injection=enabled`
 
 Install anypoint service client.
 
