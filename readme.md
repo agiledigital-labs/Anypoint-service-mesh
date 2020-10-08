@@ -2,6 +2,27 @@ This repository is a collection of resources uses to experiment with Anypoint se
 
 Developed services and configuration files will be stored here.
 
+Instructions to use:
+Minikube should be started with 4 CPUs if that is being used to run istio.
+
+`minikube start --memory=16384 --cpus=4`
+
+Download and install istio 1.6.8.
+
+`curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.8 sh -`
+
+`istioctl install --set profile=demo`
+
+Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.
+
+`kubectl apply -f hello_world_api/deployment.yaml`
+
+Apply the manifest file for anypoint service mesh.
+
+`istioctl manifest apply -f manifest-custom.yaml`
+
+Rest of the instructions will be available when anypoint service mesh is implemented.
+
 Also have a look at the following readings for a better understanding of Anypoint service mesh and service meshes in general.
 
 info dump
