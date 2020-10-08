@@ -17,7 +17,7 @@ Enable istio injection so that deployed pods can spin up with sidecar proxies.
 
 `kubectl label namespace default istio-injection=enabled`
 
-Apply the manifest file for anypoint service mesh.
+Apply the manifest file for anypoint service mesh (the manifest file used depends on the purpose of installation).
 
 `istioctl manifest apply -f manifest-custom.yaml`
 
