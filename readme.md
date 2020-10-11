@@ -1,37 +1,23 @@
-This repository is a collection of resources uses to experiment with Anypoint service mesh.
-
+## Introduction
+This repository is a collection of resources uses to experiment with Anypoint service mesh.  
 Developed services and configuration files will be stored here.
 
-Instructions to use:
-Minikube should be started with 4 CPUs if that is being used to run istio.
-
-`minikube start --memory=16384 --cpus=4`
-
-Download and install istio 1.6.8.
-
-`curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.8 sh -`
-
-`istioctl install --set profile=demo`
-
-Enable istio injection so that deployed pods can spin up with sidecar proxies.
-
-`kubectl label namespace default istio-injection=enabled`
-
-Apply the manifest file for anypoint service mesh (the manifest file used depends on the purpose of installation).
-
-`istioctl manifest apply -f manifest-custom.yaml`
-
-Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.
-
-`kubectl apply -f hello_world_api/deployment.yaml`
-
-Install anypoint service client.
-
-`curl -Ls http://anypoint.mulesoft.com/servicemesh/xapi/v1/install > asmctl && chmod +x asmctl`
-
-Rest of the instructions will be available when anypoint service mesh is implemented.
-
-Also have a look at the following readings for a better understanding of Anypoint service mesh and service meshes in general.
+### Instructions
+* Minikube should be started with 4 CPUs if that is being used to run istio.  
+`minikube start --memory=16384 --cpus=4`  
+* Download and install istio 1.6.8.  
+`curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.8 sh -`  
+`istioctl install --set profile=demo`  
+* Enable istio injection so that deployed pods can spin up with sidecar proxies.  
+`kubectl label namespace default istio-injection=enabled`  
+* Apply the manifest file for anypoint service mesh (the manifest file used depends on the purpose of installation).  
+`istioctl manifest apply -f manifest-custom.yaml`  
+* Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.  
+`kubectl apply -f hello_world_api/deployment.yaml`  
+* Install anypoint service client.  
+`curl -Ls http://anypoint.mulesoft.com/servicemesh/xapi/v1/install > asmctl && chmod +x asmctl`  
+* Rest of the instructions will be available when anypoint service mesh is implemented.  
+* Also have a look at the following readings for a better understanding of Anypoint service mesh and service meshes in general.
 
 info dump
 
