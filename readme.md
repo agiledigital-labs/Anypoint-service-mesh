@@ -5,6 +5,7 @@ Developed services and configuration files will be stored here.
 
 ### Instructions
 
+- Request for a Anypoint Service mesh trial license from mulesoft. Actioning the trial license may require some time, so it may be helpful to send a request in a few days before starting on this demo.
 - Minikube should be started with 4 CPUs if that is being used to run istio.  
   `minikube start --memory=16384 --cpus=4`
 - Download and install istio 1.6.8.  
