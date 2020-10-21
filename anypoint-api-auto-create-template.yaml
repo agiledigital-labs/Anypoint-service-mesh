@@ -1,0 +1,26 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceInstance
+metadata:
+  name: _Kubernetes API resource name_ # example: orders-api
+  namespace: _namespace name_ # example: default
+  labels:
+    service-mesh.mulesoft.com/kind: api
+spec:
+  clusterServiceClassExternalName: anypoint-platform-api-instance
+  clusterServicePlanExternalName: service-mesh
+  parameters:
+    environmentId: _environment ID_ # example: 7cea45c6-3237-464d-bd34-3122c4abde29
+    groupId: _group ID_ # Optional - example: 350b8164-e809-4091-91f5-079fb30e5a1e
+    assetId: _asset ID_ # example: orders-api
+    version: _version_ # example: 0.0.1
+    instanceLabel: _instance label_ # example: public
+    classifier: _classifier_ # Optional - example: oas
+    mainFile: _main file_ # Optional - example: api.yaml
+    specFile: _base64 encoded spec file content_ # Optional - example: dGhpcyBpcyBhIGJhc2U2NCBlbmNvZGVkIHRleHQsIEkgc2VlIHlvdSBhcmUgY3VyaW91cyEK
+    tags:
+      apiSpec:
+        - _tag in Exchange asset_ # example: orders
+      apiInstance:
+        - _tag in API Manager instance_ # example: orders
+    user: _Username of the Anypoint Platform user_
+    password: _Password of the Anypoint Platform user

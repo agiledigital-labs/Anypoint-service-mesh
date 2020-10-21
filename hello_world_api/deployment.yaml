@@ -17,18 +17,19 @@ spec:
           image: hello-world-image:latest # image we pushed
           imagePullPolicy: Never
           ports:
-            - containerPort: 3000
+            - containerPort: 8000
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: hello-world-deployment
-  namespace: default
+  namespace: mule-apis
 spec:
   ports:
-    - port: 3000
+    - name: http
+      port: 8000
       protocol: TCP
-      targetPort: 3000
+      targetPort: 8000
   selector:
     app: hello-world
   type: ClusterIP

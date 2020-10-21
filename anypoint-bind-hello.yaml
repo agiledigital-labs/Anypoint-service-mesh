@@ -1,0 +1,14 @@
+apiVersion: servicecatalog.k8s.io/v1beta1
+kind: ServiceBinding
+metadata:
+  # name is used as resulting secret name if no secretName is specified under the spec section.
+  name: hello-api-binding # example: orders-api-binding
+  namespace: mule-apis # example: default
+  labels:
+    service-mesh.mulesoft.com/kind: api-binding
+spec:
+  instanceRef:
+    name: hello-world-deployment # example: orders-api
+  parameters:
+    adapter: mule-adapter # example: bookinfo-service-mesh-adapter
+    service: hello-world-deployment # example: orders-service
