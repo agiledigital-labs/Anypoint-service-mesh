@@ -12,7 +12,7 @@ Developed services and configuration files will be stored here.
   `curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.8 sh -`  
   `istioctl install --set profile=demo`
 - Enable istio injection so that deployed pods can spin up with sidecar proxies.  
-  `kubectl label namespace default istio-injection=enabled`
+  `kubectl label namespace mule-apis istio-injection=enabled`
 - Apply the manifest file for anypoint service mesh (the manifest file used depends on the purpose of installation).  
   `istioctl manifest apply -f manifest-custom.yaml`
 - Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.  
