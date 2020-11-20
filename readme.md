@@ -3,21 +3,25 @@
 This repository is a collection of resources used to experiment with Anypoint service mesh.  
 Developed services and configuration files will be stored here.
 
+### Before you start
+- Request an Anypoint Service Mesh trial license from MuleSoft. Actioning the trial license may require some time, so it may be wise to send a request a few days before starting on this demo.
+- Request the Anypoint permissions that you will need from your organisation. To define the API to be applied through the Service Mesh, the API creator role is required. To access analytics and apply policies, API Manager Environment Administration permission is required.
+
+
 ### Instructions
 
-- Request for a Anypoint Service mesh trial license from mulesoft. Actioning the trial license may require some time, so it may be helpful to send a request in a few days before starting on this demo.
 - Minikube should be started with 4 CPUs if that is being used to run istio.  
   `minikube start --memory=16384 --cpus=4`
 - Download and install istio 1.6.8.  
   `curl -L https://istio.io/downloadIstio | ISTIO_VERSION=1.6.8 sh -`  
   `istioctl install --set profile=demo`
+- Create a namespace for pod deployment.
+  `kubectl create namespace mule-apis`
 - Enable istio injection so that deployed pods can spin up with sidecar proxies.  
   `kubectl label namespace mule-apis istio-injection=enabled`
 - Apply the manifest file for anypoint service mesh (the manifest file used depends on the purpose of installation).  
   `istioctl manifest apply -f manifest-custom.yaml`
-- Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.  
-  `kubectl apply -f hello_world_api/deployment.yaml`
-- Install anypoint service client.  
+- Download and install anypoint service client.  
   `curl -Ls http://anypoint.mulesoft.com/servicemesh/xapi/v1/install > asmctl && chmod +x asmctl`
 - Install anypoint service mesh. You will need a anypoint license key and the client id and secret associated with that license key.  
   `asmctl install --clientId=<clientId> --clientSecret=<clientSecret> --license=<license absolute or relative path> --platformUri=<Anypoint Platform Uri>`
@@ -25,8 +29,12 @@ Developed services and configuration files will be stored here.
   `kubectl get pods -n service-mesh`
 - Provision an adapter for the service mesh. The deployment you want to be in the service mesh need to be in the same namespace as the adapter provision.  
   `asmctl adapter create \ --name=<adapter name> \ --namespace=<adapter namespace> \ --size=<adapter plan size> \ --replicas=<amount of replicas for the adapter> \ --clientId=<clientId of the environment or organization> \ --clientSecret=<client secret of the environment or organization> \ --platformUri=<URL of Anypoint Platform>`
+- Verify that there is a new adapter pod in Service Mesh pod list.
+  `kubectl get pods -n service-mesh`
 - Verify the adapter status.  
   `asmctl adapter list`
+- Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.  
+  `kubectl apply -f hello_world_api/deployment.yaml`
 - Fill in the values and apply auto create yaml file to automatically create your api in anypoint platform.  
   `kubectl apply -f anypoint-api-auto-create-template.yaml`
 - Verify the endpoint is created on anypoint platform.  
