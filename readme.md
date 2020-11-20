@@ -1,7 +1,7 @@
 ## Introduction
 
 This repository is a collection of resources used to experiment with Anypoint service mesh.  
-Developed services and configuration files will be stored here.
+Configuration files and other resources will be stored here.
 
 ### Before you start
 - Request an Anypoint Service Mesh trial license from MuleSoft. Actioning the trial license may require some time, so it may be wise to send a request a few days before starting on this demo.
