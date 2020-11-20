@@ -33,9 +33,19 @@ Developed services and configuration files will be stored here.
   `kubectl get pods -n service-mesh`
 - Verify the adapter status.  
   `asmctl adapter list`
-- Build an image for hello_world_api and then deploy the application using the yaml file in kubernetes.  
-  `kubectl apply -f hello_world_api/deployment.yaml`
-- Fill in the values and apply auto create yaml file to automatically create your api in anypoint platform.  
+- Point local docker daemon to minikube's internal docker registry.
+  `eval $(minikube -p minikube docker-env)`
+- Go to `hello_world_api` folder and build an image.
+  `docker build -t hello-world-image .`
+- Deploy the application in kubernetes using the yaml file.  
+  `kubectl apply -f hello_world_api/deployment.yaml -n mule-apis`
+- Change context to `mule-apis` namespace.
+  `kubectl config set-context $(kubectl config current-context) --namespace mule-apis`
+- Run a pod with curl image in mule-apis namespace and send a request to the service. It should come back with a hello-world response.
+  `kubectl run curl-debug  --generator=run-pod/v1  --image curlimages/curl -i -t  --command -- bin/sh`
+- This method can be used to send requests to the endpoint for testing purposes later too.
+  `kubectl attach curl-debug -c curl-debug -i -t`
+- Go back to the project root directory. Fill in environmentId, instanceLabel, assetId, version, apiSpec,apiInstance tags, username and passwordin anypoint-api-auto-create.yaml and apply auto-create YAML file to create your API in Anypoint Platform automatically.  
   `kubectl apply -f anypoint-api-auto-create-template.yaml`
 - Verify the endpoint is created on anypoint platform.  
   `asmctl api list`
@@ -51,6 +61,7 @@ Developed services and configuration files will be stored here.
 
 ### Recommended Reading
 
+- [Why use a Service Mesh](https://medium.com/agiledigital/scaling-with-microservices-heres-why-service-mesh-is-a-must-a0c67340205a)
 - [Service mesh simplified explanation](https://medium.com/swlh/service-mesh-explained-in-plain-english-8e5505f74ead)
 - [All about service mesh](https://github.com/paulbouwer/slide-decks/blob/master/2019/container-camp-au/Decoding-the-Service-Mesh-Landscape.pdf)
 - [Mule policy](https://docs.mulesoft.com/api-manager/2.x/policies-mule4)
